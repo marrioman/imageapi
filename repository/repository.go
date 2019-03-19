@@ -37,21 +37,17 @@ func LoadConvert(c *entity.Image) (err error) {
 	content3, _ := ioutil.ReadAll(reader3)
 	encoded3 := base64.StdEncoding.EncodeToString(content3)
 
-	// err = db.Table("images").Omit("created_at").Create(c).Error
-	// if err != nil {
-	// 	return
-	// }
-	com := &entity.Image{Name1: "rock", ImageStr: encoded, ImageType: "original"}
+	com := &entity.Image{Name: "rock", ImageStr: encoded, ImageType: "original"}
 	err = db.Table("images").Create(com).Error
 	if err != nil {
 		return
 	}
-	xom := &entity.Image{Name1: "rock64preview", ImageStr: encoded2, ImageType: "preview"}
+	xom := &entity.Image{Name: "rock64preview", ImageStr: encoded2, ImageType: "preview"}
 	err = db.Table("images").Create(xom).Error
 	if err != nil {
 		return
 	}
-	dom := &entity.Image{Name1: "rock180", ImageStr: encoded3, ImageType: "180"}
+	dom := &entity.Image{Name: "rock180", ImageStr: encoded3, ImageType: "180"}
 	err = db.Table("images").Create(dom).Error
 	if err != nil {
 		return
@@ -70,8 +66,8 @@ func GetByFilter(filter *entity.Image) (images []entity.Image, err error) {
 		query = query.Where("image_type=?", filter.ImageType)
 	}
 
-	if filter.Name1 != "" {
-		query = query.Where("name1=?", filter.Name1)
+	if filter.Name != "" {
+		query = query.Where("name=?", filter.Name)
 	}
 
 	err = query.Find(&images).Error

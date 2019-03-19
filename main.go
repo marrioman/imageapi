@@ -10,13 +10,13 @@ import (
 
 func main() {
 
-	ImageConv()
+	ImageTransform()
 
 	HandleRequest()
 
 }
 
-func ImageConv() {
+func ImageTransform() {
 
 	rev, err := imaging.Open("images/rock.jpg")
 	if err != nil {
