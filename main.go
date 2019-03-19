@@ -3,19 +3,10 @@ package main
 import (
 	"imagesapi/middleware"
 	"log"
-	"time"
 
 	"github.com/disintegration/imaging"
 	"github.com/gin-gonic/gin"
 )
-
-type Image struct {
-	ID        int
-	Name1     string
-	ImageStr  string
-	ImageType string
-	CreatedAt time.Time
-}
 
 func main() {
 
